@@ -10,7 +10,7 @@ var CounterSchema = Schema({
 });
 
 //schema for my url links
-var UrlSchema = Schema({
+var UrlSchema = new Schema({
   _id: {type: Number, index: true},
   long_url: String,
   created_at: Date
