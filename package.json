@@ -1,0 +1,25 @@
+{
+  "name": "anissa_meanlab",
+  "version": "1.0.0",
+  "description": "mean app with CRUD functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuperJones/anissa_meanlab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SuperJones/anissa_meanlab/issues"
+  },
+  "homepage": "https://github.com/SuperJones/anissa_meanlab#readme",
+  "dependencies": {
+    "app-module-path": "^1.0.6",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.4.12"
+  }
+}
