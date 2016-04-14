@@ -1,5 +1,6 @@
 var express     = require("express");
 var hbs         = require("express-handlebars");
+var mongoose    = require("mongoose");
 var path        = require("path"); //helps make path manipulation easier.
 var app         = express();
 var base58      = require("./base58.js");
