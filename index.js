@@ -40,8 +40,25 @@ app.post("/api/shorten", function(req, res){
   Url.findOne({long_url: longUrl}, function(err, doc){
     if(doc){
       //url has already been shortened
+      shortUrl = config.webhost + base58.encode(doc._id);
+      res.send({'shortUrl': shortUrl});
     }else{
       //longurl not found so create a new entry.
+      var newUrl = Url({
+        long_url: longUrl
+      });
+
+      //save new link
+      newUrl.save(function(err){
+        if(err){
+          console.log(err);
+        }
+
+        //make the short url
+        shortUrl = config.webhost + base58.encode(newUrl._id);
+
+        res.send({'shortUrl': shortUrl});
+      });
     }
   });
 });

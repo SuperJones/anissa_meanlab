@@ -24,6 +24,7 @@ UrlSchema.pre('save', function(next){
   //$inc takes an object of the property and how many to increment it by.
   counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, function(error, counter) {
       if (error)
+          //TODO: Look up next();
           return next(error);
       // set the _id of the urls collection to the incremented value of the counter
       doc._id = counter.seq;
