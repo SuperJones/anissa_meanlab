@@ -6,19 +6,26 @@ but by doing it this way we can take advantage of creating an id
 and pulling that into the main table.*/
 var CounterSchema = Schema({
   _id:  { type: String, required: true},
-  seq:  { type: Number, default: 0}
+  seq:  { type: Number, default: 0 }
 });
 
+
+
+//make a counter model
+var counter = mongoose.model("counter", CounterSchema);
+
+
 //schema for my url links
-var UrlSchema = new Schema({
+var urlSchema = new Schema({
   _id: {type: Number, index: true},
   long_url: String,
   created_at: Date
 });
 
+
 // The pre('save', callback) executes the callback function
 // every time before an entry is saved to the urls collection.
-UrlSchema.pre('save', function(next){
+urlSchema.pre('save', function(next){
   var doc = this;
   // find the url_count and increment it by 1
   //$inc takes an object of the property and how many to increment it by.
@@ -33,10 +40,9 @@ UrlSchema.pre('save', function(next){
   });
 });
 
-//make a counter model
-var counter = mongoose.model("counter", CounterSchema);
+
 //make a Url model
-var Url = mongoose.model("Url", UrlSchema);
+var Url = mongoose.model("Url", urlSchema);
 
 //export Url
 module.exports = Url;

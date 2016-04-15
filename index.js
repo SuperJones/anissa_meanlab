@@ -33,6 +33,8 @@ app.get("/", function(req, res){
 
 //This route that will handle the incoming POST request
 app.post("/api/shorten", function(req, res){
+  console.log(req.body);
+  console.log(req.body.url);
   var longUrl  = req.body.url;
   var shortUrl = '';
 
@@ -63,10 +65,22 @@ app.post("/api/shorten", function(req, res){
   });
 });
 
-//
-// app.get("", function(req, res){
-//
-// });
+
+app.get('/:encoded_id', function(req, res){
+  var base58Id = req.params.encoded_id;
+  var id = base58.decode(base58Id);
+
+  // check if url already exists in database
+  Url.findOne({_id: id}, function (err, doc){
+    if (doc) {
+      // found an entry in the DB, redirect the user to their destination
+      res.redirect(doc.long_url);
+    } else {
+      // nothing found, take 'em home
+      res.redirect(config.webhost);
+    }
+  });
+});
 
 app.listen(3001, function(){
   console.log("Your server is aliiive!!");
